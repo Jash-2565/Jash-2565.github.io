@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jash Bhatt Workshops and Programs JS</title>
+    <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1b2a;
+            color: #FFE5B2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            justify-content: center;
+            overflow-x: hidden;
+            transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+        }
+
+        /* Slide-in and Slide-out transitions */
+        body.slide-in {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        body.slide-start {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+
+        body.slide-out {
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+
+        /* Top navigation bar */
+        .top-bar {
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to bottom, #2a0e0d 50%, #0d1b2a);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 50px;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .name {
+            font-size: 36px;
+            color: #FFE5B2;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 80px;
+            justify-content: center;
+        }
+
+        .nav-links a {
+            font-size: 18px;
+            color: #FFE5B2;
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .contact-btn {
+            font-size: 16px;
+            color: #2a0e0d;
+            background-color: #FFE5B2;
+            padding: 8px 12px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .social-btn {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(to bottom, #2a0e0d 50%, #0d1b2a);
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .social-btn:hover {
+            transform: scale(1.2);
+            opacity: 0.8;
+        }
+
+        .social-btn img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Programs Section */
+        .programs-section {
+            display: flex;
+            gap: 20px;
+            padding: 50px;
+            background-color: #1a2635;
+            color: #FFE5B2;
+            width: 90%;
+            max-width: 1200px;
+            margin-top: 150px;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            border-radius: 15px;
+        }
+
+        .program {
+            flex: 1;
+            min-width: 300px;
+            max-width: 400px;
+            background-color: #223140;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .program-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .program h2 {
+            font-size: 24px;
+            color: #FFE5B2;
+        }
+
+        .program img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
+
+        .program p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body class="slide-start">
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="name">Jash Bhatt</div>
+        <div class="nav-links">
+            <a id="about-link" href="Jash Bhatt About Me - JavaScript.html">About Me</a>
+            <a id="education-link" href="Jash Bhatt Education Timeline - JS.html">Education Timeline</a>
+            <a id="programs-link" href="Jash Bhatt Programs - JavaScript.html">Programs</a>
+            <a id="workshops-link" href="Jash Bhatt Workshops and Programs.html">External Workshops and Programs</a>
+        </div>
+        <div class="social-links">
+            <a href="#contact" class="contact-btn">Contact Me</a>
+            <a href="https://www.linkedin.com/in/jash-bhatt-51b892272/" target="_blank" class="social-btn">
+                <img src="Linkedin.png" alt="LinkedIn">
+            </a>
+            <a href="https://www.instagram.com/jash_bhatt25/" target="_blank" class="social-btn">
+                <img src="Instagram.png" alt="Instagram">
+            </a>
+        </div>
+    </div>
+
+    <!-- Programs Section with Original Content Restored -->
+    <div class="programs-section">
+        <div class="program">
+            <div class="program-header">
+                <h2>Python & Data Science</h2>
+                <img src="python.png" alt="Python Logo">
+            </div>
+            <p>I have been learning Python since the beginning of this year, and I started learning data science in August. I am learning this because, even though I plan on doing front-end development in my future, I found it necessary to learn the back-end development of a website to understand everything that goes into web development.</p>
+        </div>
+        <div class="program">
+            <div class="program-header">
+                <h2>CIID Workshop</h2>
+                <img src="CIID.png" alt="CIID Logo">
+            </div>
+            <p>In June of this year, I attended the Copenhagen Institute of Interaction Design workshop in collaboration with FLAME University. I attended the artificial intelligence workshop, where I learned many AI features and how I can integrate them into my journey of Design.</p>
+        </div>
+    </div>
+
+    <!-- JavaScript for Slide Transitions -->
+    <script>
+        // Apply slide-in effect on page load
+        window.addEventListener('load', function() {
+            document.body.classList.remove('slide-start');
+            document.body.classList.add('slide-in');
+        });
+
+        // Function for adding slide-out effect on navigation links
+        function addSlideEffect(link) {
+            link.addEventListener('click', function (event) {
+                event.preventDefault();
+                document.body.classList.add('slide-out');
+                setTimeout(() => {
+                    window.location.href = this.href;
+                }, 500);
+            });
+        }
+
+        // Attach slide-out effect to navigation links
+        ['about-link', 'education-link', 'programs-link', 'workshops-link'].forEach(id => {
+            const link = document.getElementById(id);
+            if (link) {
+                addSlideEffect(link);
+            }
+        });
+    </script>
+</body>
+</html>
