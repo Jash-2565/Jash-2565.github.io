@@ -235,6 +235,10 @@
         border-radius: 10px;
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
         display: flex;
+        flex-direction: column;
+        gap: 20px;
+        max-width: 500px;
+        text-align: center;
         align-items: center;
         justify-content: center;
     }
@@ -243,6 +247,20 @@
         max-width: 80%;
         height: auto;
         border-radius: 10px;
+    }
+
+    .modal-content h3 {
+        font-size: 16px;
+        margin: 10px 0;
+        color: #2a0e0d;
+    }
+
+    .modal-content p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #2a0e0d;
+    margin: 0;
+    white-space: pre-wrap;
     }
 
     /* Add this to your existing style section */
@@ -397,6 +415,7 @@
     <div id="modal-python" class="modal" style="display: none;">
         <div class="modal-content">
             <img src="ariknoid.png" alt="Python Data Science" class="modal-image">
+            <p>This is the famous ariknoid game where players use a paddle to bounce a ball and break bricks.</p>
         </div>
     </div>
 
@@ -404,6 +423,7 @@
     <div id="modal-ciid" class="modal" style="display: none;">
         <div class="modal-content">
             <img src="Hand_Face_Detection.jpg" alt="CIID Workshop" class="modal-image">
+            <p>I made a hand and face detection software on python and it's libraries using Claude AI. When the program detects the number of hands and faces that you input, it would start a timer and take a photo which you can then save on to your laptop.</p>
         </div>
     </div>
 
