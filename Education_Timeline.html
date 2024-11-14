@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education Timeline</title>
+    <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: url('circuit_background.png') no-repeat center center fixed;
+            background-size: cover;
+            background-color: #0d1b2a;
+            color: #FFE5B2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        body.fade-start {
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        body.fade-in {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        body.fade-out {
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(13, 27, 42, 0.6);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .top-bar {
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to bottom, #2a0e0d 60%, #0d1b2a);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 50px;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .name {
+            font-size: 36px;
+            font-weight: bold;
+        }
+
+        .name-link {
+            text-decoration: none;
+            color: #FFE5B2;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .name-link:hover {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 100px;
+            justify-content: center;
+        }
+
+        .nav-links a {
+            font-size: 18px;
+            color: #FFE5B2;
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .contact-btn {
+            font-size: 16px;
+            color: #2a0e0d;
+            background-color: #FFE5B2;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .info-window {
+            background-color: #FFE5B2;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            position: absolute;
+            top: 75%;
+            left: 50%;
+            transform: translateX(230%);
+            z-index: 1000;
+            display: none;
+            width: 220px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .info-window p {
+            color: #2a0e0d;
+            margin: 5px 0;
+        }
+
+        .timeline-container {
+            position: relative;
+            width: 80%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 200px;
+        }
+
+        .timeline-line {
+            position: absolute;
+            top: calc(50% - 35px);
+            left: 0;
+            right: 0;
+            height: 15px;
+            background-color: #EDC9AF;
+            z-index: 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 1;
+        }
+
+        .timeline-circle {
+            width: 70px;
+            height: 70px;
+            background-color: #D9D9D9;
+            border-radius: 50%;
+        }
+
+        .timeline-text {
+            font-size: 18px;
+            color: #FFE5B2;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        /* Alignment for timeline items */
+        .timeline-left {
+            position: relative;
+            top: 15px;
+            transform: translateX(-45px);
+        }
+
+        .timeline-center {
+            position: relative;
+            top: 15px;
+            transform: translateX(45px);
+        }
+
+        .timeline-right {
+            position: relative;
+            top: 0;
+            transform: translateX(85px);
+        }
+    </style>
+</head>
+<body class="fade-start">
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="name">
+            <a href="index.html" class="name-link">Jash Bhatt</a>
+        </div>
+        <div class="nav-links">
+            <a href="About_Me.html">About Me</a>
+            <a href="Education_Timeline.html">Education Timeline</a>
+            <a href="Programs.html">Programs</a>
+            <a href="External_Workshops.html">External Workshops</a>
+        </div>
+        <div class="social-links">
+            <div class="contact-wrapper">
+                <button class="contact-btn">Contact Me</button>
+                <div class="info-window">
+                    <p>Phone: <br>+91 8329318577</p>
+                    <p>Email: jash.bhatt@flame.edu.in</p>
+                </div>
+            </div>
+            <a href="https://www.linkedin.com/in/jash-bhatt-51b892272/" target="_blank">
+                <img src="Linkedin.png" alt="LinkedIn" width="36">
+            </a>
+            <a href="https://www.instagram.com/jash_bhatt25/" target="_blank">
+                <img src="Instagram.png" alt="Instagram" width="36">
+            </a>
+        </div>
+    </div>
+
+    <!-- Timeline Content -->
+    <div class="timeline-container">
+        <div class="timeline-line"></div>
+        <div class="timeline-item timeline-left">
+            <div class="timeline-circle"></div>
+            <div class="timeline-text">VIBGYOR HIGH<br>1st - 7th GRADE<br>ICSE</div>
+        </div>
+        <div class="timeline-item timeline-center">
+            <div class="timeline-circle"></div>
+            <div class="timeline-text">VIBGYOR HIGH<br>8th - 12th GRADE<br>CIE / IGCSE</div>
+        </div>
+        <div class="timeline-item timeline-right">
+            <div class="timeline-circle"></div>
+            <div class="timeline-text">FLAME UNIVERSITY<br>BACHELORS of DESIGN</div>
+        </div>
+    </div>
+
+    <!-- JavaScript for Fade Transitions -->
+    <script>
+        // Apply fade-in effect on page load
+        window.addEventListener('load', function () {
+            setTimeout(() => {
+                document.body.classList.add('fade-in');
+            }, 100);
+        });
+
+        // Function to add fade-out effect on navigation
+        function addFadeEffect(link) {
+            link.addEventListener('click', function (event) {
+                event.preventDefault();
+                const targetUrl = this.href;
+                document.body.classList.add('fade-out');
+                
+                setTimeout(() => {
+                    window.location.href = targetUrl;
+                }, 600);
+            });
+        }
+
+        // Apply fade-out effect to all navigation links
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            addFadeEffect(link);
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+        // Get elements for the "Contact Me" button and the info window
+        const contactBtn = document.querySelector('.contact-btn');
+        const infoWindow = document.querySelector('.info-window');
+
+        // Open the info window when the button is clicked
+        contactBtn.addEventListener('click', function (event) {
+            event.stopPropagation(); // Prevent the event from bubbling up
+            infoWindow.style.display = 'block';
+        });
+
+        // Close the info window when clicking outside of it
+        window.addEventListener('click', function (event) {
+            if (infoWindow.style.display === 'block' && !infoWindow.contains(event.target) && event.target !== contactBtn) {
+                infoWindow.style.display = 'none';
+            }
+        });
+
+        // Prevent closing the info window when clicking inside it
+        infoWindow.addEventListener('click', function (event) {
+            event.stopPropagation();
+        });
+    });
+
+    </script>
+</body>
+</html>

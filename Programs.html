@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programs</title>
+    <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: url('circuit_background.png') no-repeat center center fixed;
+            background-size: cover;
+            background-color: #0d1b2a;
+            color: #FFE5B2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+            opacity: 0; /* Start with opacity 0 */
+            transform: scale(0.95); /* Slightly scaled down */
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        body.fade-start {
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        body.fade-in {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        body.fade-out {
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(13, 27, 42, 0.6);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .top-bar {
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to bottom, #2a0e0d 50%, #0d1b2a);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 50px;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .name {
+            font-size: 36px;
+            font-weight: bold;
+        }
+
+        .name-link {
+            text-decoration: none;
+            color: #FFE5B2;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .name-link:hover {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 100px;
+        }
+
+        .nav-links a {
+            font-size: 18px;
+            color: #FFE5B2;
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .contact-btn {
+            font-size: 16px;
+            color: #2a0e0d;
+            background-color: #FFE5B2;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .info-window {
+            background-color: #FFE5B2;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            position: absolute;
+            top: 75%;
+            left: 50%;
+            transform: translateX(235%);
+            z-index: 1000;
+            display: none;
+            width: 220px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .info-window p {
+            color: #2a0e0d;
+            margin: 5px 0;
+        }
+
+        .animation-section {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: calc(100vh - 100px);
+        }
+
+        .animation-heading {
+            color: #FFE5B2;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .animation-body {
+            color: #FFE5B2;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .canvas-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body class="fade-start">
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="name">
+            <a href="index.html" class="name-link">Jash Bhatt</a>
+        </div>
+        <div class="nav-links">
+            <a href="About_Me.html">About Me</a>
+            <a href="Education_Timeline.html">Education Timeline</a>
+            <a href="Programs.html">Programs</a>
+            <a href="External_Workshops.html">External Workshops</a>
+        </div>
+        <div class="social-links">
+            <div class="contact-wrapper">
+                <button class="contact-btn">Contact Me</button>
+                <div class="info-window">
+                    <p>Phone: <br>+91 8329318577</p>
+                    <p>Email: jash.bhatt@flame.edu.in</p>
+                </div>
+            </div>
+            <a href="https://www.linkedin.com/in/jash-bhatt-51b892272/" target="_blank">
+                <img src="Linkedin.png" alt="LinkedIn" width="36">
+            </a>
+            <a href="https://www.instagram.com/jash_bhatt25/" target="_blank">
+                <img src="Instagram.png" alt="Instagram" width="36">
+            </a>
+        </div>
+    </div>
+
+    <!-- Animation Section -->
+    <div class="animation-section">
+        <h2 class="animation-heading">Christmas Lights Animation using p5.js</h2>
+        <h2 class="animation-body">Press 'P' to start and change pattern, Press 'R' to stop animation</h2>
+        <div class="canvas-container" id="canvas-container"></div>
+    </div>
+
+    <!-- JavaScript for Fade Transitions -->
+    <script>
+        // Apply fade-in effect on page load
+        window.addEventListener('load', function () {
+            setTimeout(() => {
+                document.body.classList.add('fade-in')
+                document.body.classList.add('fade-start');
+            }, 100);
+        });
+
+        // Function to add fade-out effect on navigation
+        function addFadeEffect(link) {
+            link.addEventListener('click', function (event) {
+                event.preventDefault();
+                const targetUrl = this.href;
+                document.body.classList.add('fade-out');
+                
+                setTimeout(() => {
+                    window.location.href = targetUrl;
+                }, 600);
+            });
+        }
+
+        // Apply fade-out effect to all navigation links
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            addFadeEffect(link);
+        });
+    </script>
+    
+</body>
+</html>
+
+
+    <!-- p5.js Christmas Lights Animation Script -->
+    <script>
+        // Your existing JavaScript code remains the same
+        let lights = [];
+        let windOffset = 0;
+        let windSpeed = 0.1;
+        let colorPalette = ['red', 'green', 'blue', 'yellow', 'orange', 'purple', 'pink', 'cyan', 'magenta', 'lime', 'teal', 'violet'];
+        let availableColors = [];
+        let numRows = 3;
+        let numLightsPerRow = 8;
+        let currentPattern = 0;
+        let patternActive = false;
+
+        function setup() {
+            let canvas = createCanvas(700, 400);
+            canvas.parent('canvas-container');
+            
+            availableColors = [...colorPalette];
+
+            let rowSpacing = height / (numRows + 1);
+
+            for (let row = 0; row < numRows; row++) {
+                for (let i = 0; i < numLightsPerRow; i++) {
+                    let x = i * (width / numLightsPerRow) + width / numLightsPerRow / 2;
+                    let y = (row + 1) * rowSpacing;
+
+                    let colorIndex = floor(random(availableColors.length));
+                    let lightColor = color(availableColors[colorIndex]);
+
+                    availableColors.splice(colorIndex, 1);
+
+                    if (availableColors.length == 0) {
+                        availableColors = [...colorPalette];
+                    }
+
+                    lights.push(new Light(x, y, lightColor));
+                }
+            }
+        }
+
+        function draw() {
+            background(30, 30, 30);
+
+            windOffset = sin(millis() / 1000) * windSpeed * 50;
+
+            for (let row = 0; row < numRows; row++) {
+                drawCurvedString(row, windOffset, 5);
+            }
+
+            if (patternActive) {
+                switch (currentPattern) {
+                    case 0:
+                        randomTwinklePattern();
+                        break;
+                    case 1:
+                        wavePattern();
+                        break;
+                    case 2:
+                        blinkAllPattern();
+                        break;
+                    case 3:
+                        alternateRowsPattern();
+                        break;
+                }
+            }
+
+            for (let light of lights) {
+                light.display();
+            }
+        }
+
+        function drawCurvedString(row, xOffset, yOffset) {
+            stroke(200);
+            strokeWeight(2);
+            noFill();
+
+            let rowStartIndex = row * numLightsPerRow;
+
+            for (let i = rowStartIndex; i < rowStartIndex + numLightsPerRow - 1; i++) {
+                let midX = (lights[i].x + lights[i + 1].x) / 2 + xOffset;
+                let controlY = (lights[i].y + lights[i + 1].y) / 2 + 50 + yOffset;
+
+                bezier(
+                    lights[i].x + xOffset, lights[i].y - 20,
+                    midX, controlY,
+                    midX, controlY,
+                    lights[i + 1].x + xOffset, lights[i + 1].y - 20
+                );
+            }
+        }
+
+        class Light {
+            constructor(x, y, col) {
+                this.x = x;
+                this.y = y;
+                this.col = col;
+                this.isOn = false;
+                this.size = 30;
+                this.glowSize = 0;
+            }
+
+            display() {
+                noStroke();
+                if (this.isOn) {
+                    fill(red(this.col), green(this.col), blue(this.col), 100);
+                    ellipse(this.x, this.y, this.size + this.glowSize, this.size + this.glowSize);
+                    this.glowSize = lerp(this.glowSize, 50, 0.1);
+                    fill(this.col);
+                } else {
+                    fill(50);
+                    this.glowSize = lerp(this.glowSize, 0, 0.1);
+                }
+                ellipse(this.x, this.y, this.size, this.size);
+                fill(255, 255, 255, 80);
+                ellipse(this.x - 5, this.y - 5, this.size / 3, this.size / 3);
+            }
+
+            randomToggle() {
+                if (random(1) < 0.05) {
+                    this.isOn = !this.isOn;
+                }
+            }
+
+            turnOn() {
+                this.isOn = true;
+            }
+
+            turnOff() {
+                this.isOn = false;
+            }
+        }
+
+        function keyPressed() {
+            if (key.toLowerCase() === 'p') {
+                currentPattern = (currentPattern + 1) % 4;
+                patternActive = true;
+            }
+
+            if (key.toLowerCase() === 'r') {
+                for (let light of lights) {
+                    light.isOn = false;
+                }
+                patternActive = false;
+            }
+
+            if (key === '+') {
+                windSpeed += 0.05;
+            } else if (key === '-') {
+                windSpeed = max(0, windSpeed - 0.05);
+            }
+        }
+
+        function randomTwinklePattern() {
+            for (let light of lights) {
+                light.randomToggle();
+            }
+        }
+
+        function wavePattern() {
+            let timeInterval = 300;
+            let index = floor(millis() / timeInterval) % numLightsPerRow;
+            for (let row = 0; row < numRows; row++) {
+                let rowStartIndex = row * numLightsPerRow;
+                for (let i = 0; i < numLightsPerRow; i++) {
+                    lights[rowStartIndex + i].isOn = (i === index);
+                }
+            }
+        }
+
+        function blinkAllPattern() {
+            let isOn = floor(millis() / 1000) % 2 === 0;
+            for (let light of lights) {
+                light.isOn = isOn;
+            }
+        }
+
+        function alternateRowsPattern() {
+            let alternate = floor(millis() / 1000) % 2;
+            for (let row = 0; row < numRows; row++) {
+                let rowStartIndex = row * numLightsPerRow;
+                for (let i = 0; i < numLightsPerRow; i++) {
+                    lights[rowStartIndex + i].isOn = (row % 2 === alternate);
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+        // Get elements for the "Contact Me" button and the info window
+        const contactBtn = document.querySelector('.contact-btn');
+        const infoWindow = document.querySelector('.info-window');
+
+        // Open the info window when the button is clicked
+        contactBtn.addEventListener('click', function (event) {
+            event.stopPropagation(); // Prevent the event from bubbling up
+            infoWindow.style.display = 'block';
+        });
+
+        // Close the info window when clicking outside of it
+        window.addEventListener('click', function (event) {
+            if (infoWindow.style.display === 'block' && !infoWindow.contains(event.target) && event.target !== contactBtn) {
+                infoWindow.style.display = 'none';
+            }
+        });
+
+        // Prevent closing the info window when clicking inside it
+        infoWindow.addEventListener('click', function (event) {
+            event.stopPropagation();
+        });
+    });
+    </script>
+</body>
+</html>
